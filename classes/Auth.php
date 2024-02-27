@@ -2,9 +2,11 @@
     namespace classes\Auth;
     require_once "Db.php";
     require_once "Session.php";
+    require_once "clean.php";
 
     use classes\Db\Db as Db;
     use classes\Session\Session as Session;
+    use classes\Clean\Clean as Clean;
 
     class Auth 
     {
@@ -18,10 +20,8 @@
 
         public function clean ($data)
         {
-            $data = trim($data);
-            $data = stripslashes($data);
-            $data = htmlspecialchars($data);
-            return $data;
+            $clean = new Clean();
+            return $clean->clean($data);
         }
         public function validation ($name, $email, $password)
         {
