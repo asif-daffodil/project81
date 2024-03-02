@@ -12,7 +12,7 @@
     {
         public $errName, $errEmail, $errPassword;
         public $crrName, $crrEmail, $crrPassword = false;
-        private $session;
+        public $session;
 
         public function __construct() {
             $this->session = new Session();

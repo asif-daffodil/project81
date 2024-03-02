@@ -16,6 +16,27 @@
             echo "<script>alert('". $user->imgErrMsg ."')</script>";
         }
     }
+
+    if(isset($_POST['updateProfile'])){
+        $user = new User;
+        $name = $auth->clean($_POST['name']);
+        $email = $auth->clean($_POST['email']);
+        $phone = $auth->clean($_POST['phone']);
+        $address = $auth->clean($_POST['address']);
+        $id = $auth->clean($_POST['id']);
+        if($user->updateProfile($name, $email, $phone, $address, $id)){
+            $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong> Profile updated successfully.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+            echo "<script>setTimeout(()=>location.href='./profile',2000)</script>";
+        }else{
+            $msg = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error!</strong> Profile not updated.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+        }
+    }
 ?>
     <div class="container">
         <div class="row my-5 py-5">
@@ -47,22 +68,48 @@
                 </div>
             </div>
             <div class="col-md-8">
+                <?php if(!isset($_GET['update'])){ ?>
                 <table class="table">
                     <tr>
                         <th>Email</th>
-                        <td>demo@gmail.com</td>
+                        <td><?= $auth->user()['email'] ?></td>
                     </tr>
                     <tr>
                         <th>Phone</th>
-                        <td>01700000000</td>
+                        <td><?= $auth->user()['phone'] ?? null ?></td>
                     </tr>
                     <tr>
                         <th>Address</th>
-                        <td>Dhaka, Bangladesh</td>
+                        <td><?= $auth->user()['address'] ?? null ?></td>
                     </tr>
                 </table>
-                <a href="" class="btn btn-primary btn-sm">Update Profile</a>
+                <a href="./profile?update=1" class="btn btn-primary btn-sm">Update Profile</a>
+                <?php }else{ ?>
+                <form action="" method="post" >
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" value="<?= $auth->user()['name'] ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control disabled" id="email" name="email" value="<?= $auth->user()['email'] ?>" disabled >
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="text" class="form-control" id="phone" name="phone" value="<?= $auth->user()['phone'] ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address" name="address" value="<?= $auth->user()['address'] ?>">
+                    </div>
+                    <input type="hidden" name="id" value="<?= $auth->user()['id'] ?>">
+                    <button type="submit" class="btn btn-primary btn-sm" name="updateProfile">Update Profile</button>
+                    <a href="./profile" class="btn btn-danger btn-sm">Cancel</a>
+                <?php } ?>
+                <div class="mb-3"></div>
+                <?= $msg ?? null ?>
             </div>
+
         </div>
     </div>
     <script>

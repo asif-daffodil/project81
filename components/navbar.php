@@ -46,6 +46,9 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="./profile">Update Profile</a></li>
             <li><a class="dropdown-item" href="./change-password">Change Password</a></li>
+            <?php if($auth->user()['role'] === 'admin'){ ?>
+              <li><a class="dropdown-item" href="./admin">Admin</a></li>
+            <?php } ?>
             <li><hr class="dropdown-divider"></li>
             <li>
               <form action="" method="post">

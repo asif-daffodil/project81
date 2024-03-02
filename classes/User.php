@@ -2,7 +2,6 @@
     namespace classes\User;
     
     require_once 'Db.php';
-    require_once 'Clean.php';
     require_once 'Session.php';
 
     use classes\Db\Db as Db;
@@ -73,6 +72,25 @@
             {
                 // set image value on session
                 $this->session->update('user', 'image', $imgName);
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function updateProfile ($name, $email, $phone, $address, $id) {
+            $name = $this->db->conn->real_escape_string($name);
+            $email = $this->db->conn->real_escape_string($email);
+            $phone = $this->db->conn->real_escape_string($phone);
+            $address = $this->db->conn->real_escape_string($address);
+            $id = $this->db->conn->real_escape_string($id);
+            $sql = "UPDATE users SET name = '$name', email = '$email', phone = '$phone', address = '$address' WHERE id = $id";
+            if ($this->db->conn->query($sql))
+            {
+                $this->session->update('user', 'name', $name);
+                $this->session->update('user', 'email', $email);
+                $this->session->update('user', 'phone', $phone);
+                $this->session->update('user', 'address', $address);
                 return true;
             }else{
                 return false;
