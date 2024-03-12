@@ -6,12 +6,13 @@
         private $user = "root";
         private $password = "";
         private $database = "project81";
+        private $port = 4308; // Change this to your desired port number
 
         public $conn;
 
         public function __construct() {
-            // create database if noy exists
-            $this->conn = new mysqli($this->host, $this->user, $this->password);
+            // create database if not exists
+            $this->conn = new mysqli($this->host, $this->user, $this->password, $this->database, $this->port);
             if ($this->conn->connect_error) {
                 die("Connection failed: " . $this->conn->connect_error);
             }
@@ -20,7 +21,7 @@
 
             if ($this->conn->query($sql)) {
                 $this->conn->close();
-                $this->conn = new mysqli($this->host, $this->user, $this->password, $this->database);
+                $this->conn = new mysqli($this->host, $this->user, $this->password, $this->database, $this->port);
                 $sql = "CREATE TABLE IF NOT EXISTS users (
                     id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                     name VARCHAR(100) NOT NULL,
@@ -42,7 +43,8 @@
                 $sql = "CREATE TABLE IF NOT EXISTS products (
                     id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                     name VARCHAR(100) NOT NULL,
-                    price DECIMAL(10, 2) NOT NULL,
+                    regular_price DECIMAL(10, 2) NOT NULL,
+                    sale_price DECIMAL(10, 2),
                     image  VARCHAR(100),
                     description  TEXT,
                     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -79,3 +81,4 @@
             $this->conn->close();
         }
     }
+?>

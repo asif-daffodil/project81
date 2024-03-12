@@ -4,15 +4,16 @@
 ?>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2 text-bg-dark side-bar p-4">
-            <div class="list-group ">
-                <a href="./admin" class="list-group-item text-bg-dark border-0 border-bottom">Dashboard</a>
-                <a href="./admin?action=users" class="list-group-item text-bg-dark border-0 border-bottom">Users</a>
-                <a href="./admin?action=products" class="list-group-item text-bg-dark border-0 border-bottom">Products</a>
-                <a href="./admin?action=orders" class="list-group-item text-bg-dark border-0">Orders</a>
-            </div>
+        <?php
+            require_once './components/adminSidebar.php';
+        ?>
+        <div class="col-md-10">
+            <?php 
+            if(isset($_GET['action']) && $_GET['action'] == 'products'){
+                require_once './components/product.php';
+            } 
+            ?>
         </div>
-        <div class="col-md-10"></div>
     </div>
 </div>
 
