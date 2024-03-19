@@ -33,6 +33,12 @@
           </a>
         </li>
         <?php } ?>
+        <li class="nav-item">
+          <a href="" class="nav-link" >
+            <i class="fas fa-shopping-cart"></i>
+            <span class="badge bg-primary" id="shortCart" >0</span>
+          </a>
+        </li>
         <?php if($auth->isLogged()){ ?>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

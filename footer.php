@@ -55,6 +55,35 @@
     new WOW().init();
 </script>
 <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function() {
+        const updateShortCart = () => {
+            if(Cookies.get('cart')){
+                const cart = JSON.parse(Cookies.get('cart'));
+                let total = 0;
+                for (const key in cart) {
+                    total += cart[key];
+                }
+                $('#shortCart').text(total);
+            }
+        }
+        updateShortCart();
+        let myCart = {};
+        $('.addToCart').click(function() {
+            const id = $(this).data('id');
+            if (Cookies.get('cart')) {
+                myCart = JSON.parse(Cookies.get('cart'));
+            }
+            if (myCart[id]) {
+                myCart[id] = myCart[id] + 1;
+            } else {
+                myCart[id] = 1;
+            }
+            Cookies.set('cart', JSON.stringify(myCart));
+            updateShortCart();
+        })
+    })
+</script>
 </body>
 
 </html>
