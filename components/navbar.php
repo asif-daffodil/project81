@@ -34,7 +34,7 @@
         </li>
         <?php } ?>
         <li class="nav-item">
-          <a href="" class="nav-link" >
+          <a href="./cart.php" class="nav-link" >
             <i class="fas fa-shopping-cart"></i>
             <span class="badge bg-primary" id="shortCart" >0</span>
           </a>

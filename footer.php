@@ -81,6 +81,7 @@
             }
             Cookies.set('cart', JSON.stringify(myCart));
             updateShortCart();
+            toastr.success('Product Added to Cart');
         })
     })
 </script>

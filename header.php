@@ -1,11 +1,14 @@
 <?php
 
-    require_once "./classes/Auth.php";
-    use classes\Auth\Auth as Auth;
-    $auth = new Auth();
+require_once "./classes/Auth.php";
+
+use classes\Auth\Auth as Auth;
+
+$auth = new Auth();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,8 +22,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+    <style>
+        .toast-success {
+            background-color: #28a745;
+        }
+
+        .toast-error {
+            background-color: #dc3545;
+        }
+    </style>
 </head>
+
 <body>
-    <?php 
-        require_once "./components/navbar.php";
+    <?php
+    require_once "./components/navbar.php";
     ?>

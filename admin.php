@@ -13,6 +13,11 @@
                 require_once './components/product.php';
             } 
             ?>
+            <?php
+                if(isset($_GET['action']) && $_GET['action'] == 'orders'){
+                    require_once './components/order.php';
+                }
+            ?>
         </div>
     </div>
 </div>
