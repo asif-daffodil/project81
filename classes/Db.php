@@ -5,7 +5,7 @@
         private $host = "localhost";
         private $user = "root";
         private $password = "";
-        private $database = "project81";
+        private $database = "ecommerce81";
         private $port = 4308; // Change this to your desired port number
 
         public $conn;

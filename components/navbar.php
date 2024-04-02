@@ -33,6 +33,13 @@
           </a>
         </li>
         <?php } ?>
+        <?php if($auth->isLogged()){ ?>
+          <li class="nav-item">
+            <a href="./myOrders.php" class="nav-link" >
+              My Orders
+            </a>
+          </li>
+        <?php } ?>
         <li class="nav-item">
           <a href="./cart.php" class="nav-link" >
             <i class="fas fa-shopping-cart"></i>

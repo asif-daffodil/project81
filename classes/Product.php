@@ -62,11 +62,7 @@ class Product extends Db
     {
         $sql = "SELECT * FROM products";
         $result = $this->conn->query($sql);
-        if ($result->num_rows > 0) {
-            return $result;
-        } else {
-            return 0;
-        }
+        return $result;
     }
 
     public function latestProducts()

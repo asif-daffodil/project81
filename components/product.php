@@ -153,6 +153,7 @@ if (!isset($_GET['eid']) && !isset($_GET['did'])) {
                             <?php
                             $product = new Product();
                             $products = $product->getProducts();
+                            if($products->num_rows > 0){
                             foreach ($products as $product) {
                             ?>
                                 <tr>
@@ -164,7 +165,7 @@ if (!isset($_GET['eid']) && !isset($_GET['did'])) {
                                         <a href="admin?action=products&did=<?php echo $product['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>
                                     </td>
                                 </tr>
-                            <?php } ?>
+                            <?php }} ?>
                         </tbody>
                     </table>
                 </div>
